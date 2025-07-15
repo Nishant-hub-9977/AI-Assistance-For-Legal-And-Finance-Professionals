@@ -1,4 +1,4 @@
-import { openai } from '../../config/openai';
+import { deepseek } from '../../config/deepseek';
 
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
@@ -23,8 +23,8 @@ export class LegalChatbot {
   }];
 
   private async detectIntent(message: string): Promise<Intent> {
-    const response = await openai.chat.completions.create({
-      model: "gpt-4",
+    const response = await deepseek.chat.completions.create({
+      model: "deepseek-chat",
       messages: [
         {
           role: "system",
@@ -67,8 +67,8 @@ export class LegalChatbot {
         content: `[Intent: ${intent.category}, Confidence: ${intent.confidence}] ${message}`
       });
 
-      const response = await openai.chat.completions.create({
-        model: "gpt-4",
+      const response = await deepseek.chat.completions.create({
+        model: "deepseek-chat",
         messages: [
           ...this.context,
           {

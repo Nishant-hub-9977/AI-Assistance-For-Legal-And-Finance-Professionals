@@ -1,4 +1,4 @@
-import { openai } from '../../config/openai';
+import { deepseek } from '../../config/deepseek';
 import { supabase } from '../../config/supabase';
 import { createWorker } from 'tesseract.js';
 import pdf from 'pdf-parse';
@@ -43,9 +43,9 @@ export class DocumentAnalyzer {
         text = Buffer.from(buffer).toString('utf-8');
       }
 
-      // Analyze with OpenAI
-      const response = await openai.chat.completions.create({
-        model: "gpt-4",
+      // Analyze with DeepSeek
+      const response = await deepseek.chat.completions.create({
+        model: "deepseek-chat",
         messages: [
           {
             role: "system",
